@@ -1,4 +1,5 @@
 from formaloo import constants, client
+from formaloo.tags import Tag
 
 
 class Activity:
@@ -22,12 +23,14 @@ class Activity:
         return response
 
     def get_body(self):
+        tags_body = Tag.get_list_body(self.tags)
+
         body = {
             'action': self.action,
             'custmer': self.customer_data,
             'activity_data': self.activity_data,
             'activity_date': self.activity_date,
-            'tags': self.tags
+            'tags': tags_body
         }
 
         return body

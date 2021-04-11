@@ -30,3 +30,14 @@ class Tag:
             body['slug'] = self.slug
 
         return body
+
+    @staticmethod
+    def get_list_body(tags):
+        body = []
+
+        for tag in tags:
+            body.append(
+                tag.get_body()
+            )
+
+        return body
