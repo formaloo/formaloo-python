@@ -21,10 +21,12 @@ class CustomerBatch:
         return response
 
     def get_body(self):
-        body = []
+        body = {
+            'customers_data': []
+        }
 
         for customer in self.customers:
-            body.append(
+            body['customers_data'].append(
                 customer.get_body()
             )
 

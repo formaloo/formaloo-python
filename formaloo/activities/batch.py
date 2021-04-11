@@ -21,10 +21,12 @@ class ActivityBatch:
         return response
 
     def get_body(self):
-        body = []
+        body = {
+            'activities_data': []
+        }
 
         for activity in self.activities:
-            body.append(
+            body['activities_data'].append(
                 activity.get_body()
             )
 
