@@ -9,6 +9,8 @@ V_1_0_ACTIVITY_BATCH_ENDPOINT = '%sactivities/batch/' % V_1_0_API_BASE
 V_1_0_CREATE_CUSTOMER_ENDPOINT = '%scustomers/' % V_1_0_API_BASE
 V_1_0_CUSTOMER_BATCH_ENDPOINT = '%scustomers/batch/' % V_1_0_API_BASE
 
+V_1_0_CREATE_TAGS_ENDPOINT = '%stags/' % V_1_0_API_BASE
+
 # HEADERS
 APPLICATION_HEADER = 'x-api-key'
 AUTHORIZATION_HEADER = 'Authorization'
