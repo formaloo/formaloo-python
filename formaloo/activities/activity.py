@@ -4,7 +4,13 @@ from formaloo.tags import Tag
 
 class Activity:
 
-    def __init__(self, action, customer_data, activity_data={}, activity_date=None, tags=[]):
+    def __init__(self, action, customer_data, activity_data=None, activity_date=None, tags=None):
+        if not activity_data:
+            activity_data = {}
+
+        if not tags:
+            tags = []
+
         self.client = client.Client()
         self.action = action
         self.customer_data = customer_data

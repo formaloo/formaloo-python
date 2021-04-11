@@ -3,7 +3,10 @@ from formaloo import constants, client
 
 class CustomerBatch:
 
-    def __init__(self, customers=[]):
+    def __init__(self, customers=None):
+        if not customers:
+            customers = []
+
         self.client = client.Client()
         self.customers = customers
 

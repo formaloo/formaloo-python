@@ -4,7 +4,16 @@ from formaloo.tags import Tag
 
 class Customer:
 
-    def __init__(self, base_data={}, extra_data={}, tags=[], **kwargs):
+    def __init__(self, base_data=None, extra_data=None, tags=None, **kwargs):
+        if not base_data:
+            base_data = {}
+
+        if not extra_data:
+            extra_data = {}
+
+        if not tags:
+            tags = []
+
         self.client = client.Client()
         self.base_customer_data = base_data
         self.extra_customer_data = extra_data
