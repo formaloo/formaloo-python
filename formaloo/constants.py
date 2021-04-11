@@ -1,11 +1,6 @@
-from environs import Env
-
-env = Env()
-env.read_env()
+from .settings import V_1_0_API_BASE
 
 # ENDPOINTS
-V_1_0_API_BASE = env("FORMALOO_API_BASE", 'https://api.formaloo.net/v1.0/')
-
 V_1_0_AUTHORIZATION_TOKEN_ENDPOINT = '%soauth2/authorization-token/' % V_1_0_API_BASE
 
 V_1_0_CREATE_ACTIVITY_ENDPOINT = '%sactivities/' % V_1_0_API_BASE

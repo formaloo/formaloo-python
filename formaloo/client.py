@@ -1,15 +1,9 @@
 from datetime import timedelta, datetime
 
 import requests
-from environs import Env
 
 from . import constants
-
-env = Env()
-env.read_env()
-
-CLIENT_KEY = env('FORMALOO_CLIENT_KEY')
-CLIENT_SECRET = env('FORMALOO_CLIENT_SECRET', None)
+from .settings import CLIENT_SECRET, CLIENT_KEY
 
 
 class Client:
