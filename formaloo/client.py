@@ -79,14 +79,14 @@ class Client:
                 # TODO handle errors properly
                 raise Exception(response.json().get('errors'))
 
-        def post(self, endpoint, body, include_auth_header=True, customer_headers={}):
-            headers = self._get_headers(
-                include_auth_header=include_auth_header)
+    def post(self, endpoint, body, include_auth_header=True, customer_headers={}):
+        headers = self._get_headers(
+            include_auth_header=include_auth_header)
 
-            response = requests.post(
-                url=endpoint,
-                headers=headers,
-                json=body
-            )
+        response = requests.post(
+            url=endpoint,
+            headers=headers,
+            json=body
+        )
 
-            return response
+        return response
