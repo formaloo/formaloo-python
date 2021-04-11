@@ -18,3 +18,15 @@ CREDENTIAL_GRAT_TYPE = 'client_credentials'
 
 # Settings
 AUTHORIZATION_TOKEN_TIMEOUT = 5*60
+
+# Helpers
+CUSTOMER_BASE_FIELDS = [
+    'first_name',
+    'last_name',
+    'full_name',
+    'email',
+    'phone_number',
+    'score',
+    'city',
+    'language',
+]
