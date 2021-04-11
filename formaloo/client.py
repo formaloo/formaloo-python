@@ -11,21 +11,29 @@ class Client:
         self.authorization_token = None
         self.AUTHORIZATION_EXPIRY_TIME = None
 
-    def get_headers(self):
-        headers = self.get_application_header()
+    def _get_headers(self, content_type='application/json', include_auth_header=True):
+        if content_type:
+            headers = {
+                'Content-type': content_type
+            }
+        else:
+            headers = {}
 
-        headers.update(self.get_authorization_header())
+        headers.update(self._get_application_header())
+
+        if include_auth_header:
+            headers.update(self._get_authorization_header())
 
         return headers
 
-    def get_application_header(self):
+    def _get_application_header(self):
         headers = {
             constants.APPLICATION_HEADER: CLIENT_KEY
         }
 
         return headers
 
-    def get_authorization_header(self):
+    def _get_authorization_header(self):
         headers = {}
 
         if CLIENT_SECRET:
@@ -33,7 +41,7 @@ class Client:
                 not self.authorization_token or
                 self.authorization_expiry_time < datetime.now()
             ):
-                self.obtain_authorization_token()
+                self._obtain_authorization_token()
 
             headers[constants.AUTHORIZATION_HEADER] = "{bearer} {token}".format(
                 bearer=constants.AUTHORIZATION_BEARER,
@@ -42,9 +50,9 @@ class Client:
 
         return headers
 
-    def obtain_authorization_token(self):
+    def _obtain_authorization_token(self):
         if CLIENT_SECRET:
-            request_headers = self.get_application_header()
+            request_headers = self._get_application_header()
 
             request_headers[constants.AUTHORIZATION_HEADER] = "{bearer} {token}".format(
                 bearer=constants.CREDENTIAL_BEARER,
@@ -70,3 +78,15 @@ class Client:
             elif response.status_code in [400, 401, 403]:
                 # TODO handle errors properly
                 raise Exception(response.json().get('errors'))
+
+        def post(self, endpoint, body, include_auth_header=True, customer_headers={}):
+            headers = self._get_headers(
+                include_auth_header=include_auth_header)
+
+            response = requests.post(
+                url=endpoint,
+                headers=headers,
+                json=body
+            )
+
+            return response

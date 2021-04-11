@@ -13,13 +13,11 @@ class CustomerBatch:
         self.customers.append(customer)
 
     def create(self):
-        headers = self.client.get_headers()
         body = self.get_body()
 
-        response = requests.post(
+        response = self.client.post(
             constants.V_1_0_CUSTOMER_BATCH_ENDPOINT,
-            headers=headers,
-            data=body
+            body=body
         )
 
         return response

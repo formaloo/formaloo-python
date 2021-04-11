@@ -14,13 +14,11 @@ class Activity:
         self.tags = tags
 
     def create(self):
-        headers = self.client.get_headers()
         body = self.get_body()
 
-        response = requests.post(
+        response = self.client.post(
             constants.V_1_0_CREATE_ACTIVITY_ENDPOINT,
-            headers=headers,
-            data=body
+            body=body
         )
 
         return response
