@@ -33,7 +33,7 @@ class Activity:
 
         body = {
             'action': self.action,
-            'custmer': self.customer_data,
+            'customer': self.customer_data,
             'activity_data': self.activity_data,
             'activity_date': self.activity_date,
             'tags': tags_body
