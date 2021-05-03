@@ -76,8 +76,15 @@ class Client:
                 )
 
             elif response.status_code in [400, 401, 403]:
-                # TODO handle errors properly
-                raise Exception(response.json().get('errors'))
+                try:
+                    # TODO handle errors properly
+                    raise Exception(response.json().get('errors'))
+                except:
+                    raise Exception(
+                        "Unknown error with code {}".format(
+                            response.status_code
+                        )
+                    )
 
     def post(self, endpoint, body, include_auth_header=True, customer_headers={}):
         headers = self._get_headers(
