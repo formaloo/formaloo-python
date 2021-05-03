@@ -18,7 +18,7 @@ class ActivityBatch:
             body=body
         )
 
-        return response
+        return response.json()
 
     def get_body(self):
         body = {

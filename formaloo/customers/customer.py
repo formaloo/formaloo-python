@@ -33,7 +33,7 @@ class Customer:
             body=body
         )
 
-        return response
+        return response.json()
 
     def get_body(self):
         tags_body = Tag.get_list_body(self.tags)
@@ -45,3 +45,13 @@ class Customer:
         body.update(self.base_customer_data)
 
         return body
+
+    def get_list(self, **kwargs):
+        params = kwargs
+
+        response = self.client.get(
+            constants.V_1_0_CUSTOMERS_LIST_ENDPOINT,
+            params=params
+        )
+
+        return response.json()

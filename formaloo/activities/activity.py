@@ -26,7 +26,7 @@ class Activity:
             body=body
         )
 
-        return response
+        return response.json()
 
     def get_body(self):
         tags_body = Tag.get_list_body(self.tags)

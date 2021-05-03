@@ -88,12 +88,26 @@ class Client:
 
     def post(self, endpoint, body, include_auth_header=True, customer_headers={}):
         headers = self._get_headers(
-            include_auth_header=include_auth_header)
+            include_auth_header=include_auth_header
+        )
 
         response = requests.post(
             url=endpoint,
             headers=headers,
             json=body
+        )
+
+        return response
+
+    def get(self, endpoint, params={}, include_auth_header=True, customer_headers={}):
+        headers = self._get_headers(
+            include_auth_header=include_auth_header
+        )
+
+        response = requests.get(
+            url=endpoint,
+            headers=headers,
+            params=params
         )
 
         return response
