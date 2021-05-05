@@ -22,7 +22,7 @@ class Activity:
         body = self.get_body()
 
         response = self.client.post(
-            constants.V_1_0_CREATE_ACTIVITY_ENDPOINT,
+            constants.V_1_0_ACTIVITY_LIST_CREATE_ENDPOINT,
             body=body
         )
 

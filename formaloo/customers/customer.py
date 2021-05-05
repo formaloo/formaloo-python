@@ -29,7 +29,7 @@ class Customer:
         body = self.get_body()
 
         response = self.client.post(
-            constants.V_1_0_CREATE_CUSTOMER_ENDPOINT,
+            constants.V_1_0_CUSTOMERS_LIST_CREATE_ENDPOINT,
             body=body
         )
 
@@ -50,7 +50,7 @@ class Customer:
         params = kwargs
 
         response = self.client.get(
-            constants.V_1_0_CUSTOMERS_LIST_ENDPOINT,
+            constants.V_1_0_CUSTOMERS_LIST_CREATE_ENDPOINT,
             params=params
         )
 
