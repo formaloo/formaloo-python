@@ -4,12 +4,15 @@ from .settings import V_1_0_API_BASE
 V_1_0_AUTHORIZATION_TOKEN_ENDPOINT = '%soauth2/authorization-token/' % V_1_0_API_BASE
 
 V_1_0_ACTIVITY_LIST_CREATE_ENDPOINT = '%sactivities/' % V_1_0_API_BASE
+V_1_0_ACTIVITY_ITEM_ENDPOINT = '%sactivities/{}/' % V_1_0_API_BASE
 V_1_0_ACTIVITY_BATCH_ENDPOINT = '%sactivities/batch/' % V_1_0_API_BASE
 
-V_1_0_CUSTOMERS_LIST_CREATE_ENDPOINT = '%scustomers/' % V_1_0_API_BASE
+V_1_0_CUSTOMER_LIST_CREATE_ENDPOINT = '%scustomers/' % V_1_0_API_BASE
+V_1_0_CUSTOMER_ITEM_ENDPOINT = '%scustomers/{}/' % V_1_0_API_BASE
 V_1_0_CUSTOMER_BATCH_ENDPOINT = '%scustomers/batch/' % V_1_0_API_BASE
 
 V_1_0_TAG_LIST_CREATE_ENDPOINT = '%stags/' % V_1_0_API_BASE
+V_1_0_TAG_ITEM_ENDPOINT = '%stags/{}/' % V_1_0_API_BASE
 
 V_1_0_CREATE_GAMIFICATION_CALCULATION_JOB = '%sgamification-calculation-jobs/' % V_1_0_API_BASE
 
