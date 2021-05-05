@@ -40,3 +40,14 @@ class Activity:
         }
 
         return body
+
+
+    def get_list(self, **kwargs):
+        params = kwargs
+
+        response = self.client.get(
+            constants.V_1_0_ACTIVITY_LIST_CREATE_ENDPOINT,
+            params=params
+        )
+
+        return response.json()
