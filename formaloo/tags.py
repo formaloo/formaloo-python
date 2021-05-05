@@ -2,21 +2,12 @@ from formaloo import constants, client
 
 
 class Tag:
-    def __init__(self, title, description=None, slug=None):
+
+    def __init__(self, title=None, description=None, slug=None):
         self.client = client.Client()
         self.title = title
         self.description = description
         self.slug = slug
-
-    def create(self):
-        body = self.get_body()
-
-        response = self.client.post(
-            constants.V_1_0_CREATE_TAGS_ENDPOINT,
-            body=body
-        )
-
-        return response.json()
 
     def get_body(self):
         body = {
@@ -41,3 +32,36 @@ class Tag:
             )
 
         return body
+
+    def get_list(self, **kwargs):
+        params = kwargs
+
+        response = self.client.get(
+            constants.V_1_0_TAG_LIST_CREATE_ENDPOINT,
+            params=params
+        )
+
+        return response.json()
+
+    def create(self):
+        if not self.title:
+            raise ValueError("`title` is required to create a tag!")
+
+        body = self.get_body()
+
+        response = self.client.post(
+            constants.V_1_0_TAG_LIST_CREATE_ENDPOINT,
+            body=body
+        )
+
+        return response.json()
+
+    def get(self, slug, **kwargs):
+        params = kwargs
+
+        response = self.client.get(
+            constants.V_1_0_TAG_ITEM_ENDPOINT.format(slug),
+            params=params
+        )
+
+        return response.json()

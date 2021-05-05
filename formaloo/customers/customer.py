@@ -25,16 +25,6 @@ class Customer:
             else:
                 self.extra_customer_data[key] = value
 
-    def create(self):
-        body = self.get_body()
-
-        response = self.client.post(
-            constants.V_1_0_CREATE_CUSTOMER_ENDPOINT,
-            body=body
-        )
-
-        return response.json()
-
     def get_body(self):
         tags_body = Tag.get_list_body(self.tags)
 
@@ -50,7 +40,27 @@ class Customer:
         params = kwargs
 
         response = self.client.get(
-            constants.V_1_0_CUSTOMERS_LIST_ENDPOINT,
+            constants.V_1_0_CUSTOMER_LIST_CREATE_ENDPOINT,
+            params=params
+        )
+
+        return response.json()
+
+    def create(self):
+        body = self.get_body()
+
+        response = self.client.post(
+            constants.V_1_0_CUSTOMER_LIST_CREATE_ENDPOINT,
+            body=body
+        )
+
+        return response.json()
+
+    def get(self, code, **kwargs):
+        params = kwargs
+
+        response = self.client.get(
+            constants.V_1_0_CUSTOMER_ITEM_ENDPOINT.format(code),
             params=params
         )
 
