@@ -8,16 +8,6 @@ class Tag:
         self.description = description
         self.slug = slug
 
-    def create(self):
-        body = self.get_body()
-
-        response = self.client.post(
-            constants.V_1_0_CREATE_TAGS_ENDPOINT,
-            body=body
-        )
-
-        return response.json()
-
     def get_body(self):
         body = {
             'title': self.title
@@ -41,3 +31,23 @@ class Tag:
             )
 
         return body
+
+    def create(self):
+        body = self.get_body()
+
+        response = self.client.post(
+            constants.V_1_0_TAG_LIST_CREATE_ENDPOINT,
+            body=body
+        )
+
+        return response.json()
+
+    def get_list(self, **kwargs):
+        params = kwargs
+
+        response = self.client.get(
+            constants.V_1_0_TAG_LIST_CREATE_ENDPOINT,
+            params=params
+        )
+
+        return response.json()
