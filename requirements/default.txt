@@ -1,2 +1,2 @@
-environs==9.3.2
-requests==2.25.1
+environs==9.*
+requests==2.*
