@@ -36,4 +36,5 @@ CUSTOMER_BASE_FIELDS = [
     'score',
     'city',
     'language',
+    'created_at'
 ]
