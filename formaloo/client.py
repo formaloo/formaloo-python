@@ -1,5 +1,7 @@
 from datetime import timedelta, datetime
+import json
 
+from requests.models import Response
 import requests
 
 from . import constants
@@ -88,6 +90,13 @@ class Client:
                         )
                     )
 
+    def get_blank_response(self):
+        response = Response()
+        response._content = json.dumps({}).encode('utf-8')
+        response.encoding = 'utf-8'
+        response.status_code = 204
+        return response
+
     def post(self, endpoint, body, include_auth_header=True, customer_headers={}):
         headers = self._get_headers(
             include_auth_header=include_auth_header
@@ -95,7 +104,7 @@ class Client:
 
         # If user has set key and secret to and empty value, don't send request. (Used for test purposes)
         if not headers:
-            return
+            return self.get_blank_response()
 
         response = requests.post(
             url=endpoint,
@@ -112,7 +121,7 @@ class Client:
 
         # If user has set key and secret to and empty value, don't send request. (Used for test purposes)
         if not headers:
-            return
+            return self.get_blank_response()
 
         response = requests.get(
             url=endpoint,
