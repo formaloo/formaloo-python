@@ -103,7 +103,7 @@ class Client:
         )
 
         # If user has set key and secret to and empty value, don't send request. (Used for test purposes)
-        if not headers:
+        if not constants.APPLICATION_HEADER in headers:
             return self.get_blank_response()
 
         response = requests.post(
@@ -120,7 +120,7 @@ class Client:
         )
 
         # If user has set key and secret to and empty value, don't send request. (Used for test purposes)
-        if not headers:
+        if not constants.APPLICATION_HEADER in headers:
             return self.get_blank_response()
 
         response = requests.get(
