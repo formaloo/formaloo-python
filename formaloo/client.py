@@ -28,8 +28,10 @@ class Client:
 
     def _get_application_header(self):
         headers = {
-            constants.APPLICATION_HEADER: CLIENT_KEY
         }
+
+        if CLIENT_KEY:
+            headers[constants.APPLICATION_HEADER] = CLIENT_KEY
 
         return headers
 
@@ -91,6 +93,10 @@ class Client:
             include_auth_header=include_auth_header
         )
 
+        # If user has set key and secret to and empty value, don't send request. (Used for test purposes)
+        if not headers:
+            return
+
         response = requests.post(
             url=endpoint,
             headers=headers,
@@ -103,6 +109,10 @@ class Client:
         headers = self._get_headers(
             include_auth_header=include_auth_header
         )
+
+        # If user has set key and secret to and empty value, don't send request. (Used for test purposes)
+        if not headers:
+            return
 
         response = requests.get(
             url=endpoint,
