@@ -97,7 +97,7 @@ class Client:
         response.status_code = 204
         return response
 
-    def post(self, endpoint, body, include_auth_header=True, customer_headers={}):
+    def post(self, endpoint, body, include_auth_header=True):
         headers = self._get_headers(
             include_auth_header=include_auth_header
         )
@@ -124,6 +124,40 @@ class Client:
             return self.get_blank_response()
 
         response = requests.get(
+            url=endpoint,
+            headers=headers,
+            params=params
+        )
+
+        return response
+
+    def patch(self, endpoint, body, include_auth_header=True):
+        headers = self._get_headers(
+            include_auth_header=include_auth_header
+        )
+
+        # If user has set key and secret to and empty value, don't send request. (Used for test purposes)
+        if not constants.APPLICATION_HEADER in headers:
+            return self.get_blank_response()
+
+        response = requests.patch(
+            url=endpoint,
+            headers=headers,
+            json=body
+        )
+
+        return response
+
+    def delete(self, endpoint, params, include_auth_header=True):
+        headers = self._get_headers(
+            include_auth_header=include_auth_header
+        )
+
+        # If user has set key and secret to and empty value, don't send request. (Used for test purposes)
+        if not constants.APPLICATION_HEADER in headers:
+            return self.get_blank_response()
+
+        response = requests.delete(
             url=endpoint,
             headers=headers,
             params=params
