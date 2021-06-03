@@ -58,11 +58,9 @@ class Activity:
         return response.json()
 
     def get(self, slug, **kwargs):
-        params = kwargs
-
         response = self.client.get(
             constants.V_1_0_ACTIVITY_ITEM_ENDPOINT,
-            params=params
+            params=kwargs
         )
 
         return response.json()
