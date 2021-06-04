@@ -13,7 +13,7 @@ class GamificationCalculationJob:
             body=body
         )
 
-        return response.json()
+        return response.status_code, response.json()
 
     def get_body(self):
         body = {

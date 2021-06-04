@@ -44,7 +44,7 @@ class Customer:
             params=params
         )
 
-        return response.json()
+        return response.status_code, response.json()
 
     def create(self):
         body = self.get_body()
@@ -54,7 +54,7 @@ class Customer:
             body=body
         )
 
-        return response.json()
+        return response.status_code, response.json()
 
     def get(self, code, **kwargs):
         params = kwargs
@@ -64,4 +64,4 @@ class Customer:
             params=params
         )
 
-        return response.json()
+        return response.status_code, response.json()

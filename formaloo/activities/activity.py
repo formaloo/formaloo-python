@@ -42,7 +42,7 @@ class Activity:
             params=params
         )
 
-        return response.json()
+        return response.status_code, response.json()
 
     def create(self):
         if not self.action:
@@ -55,7 +55,7 @@ class Activity:
             body=body
         )
 
-        return response.json()
+        return response.status_code, response.json()
 
     def get(self, slug, **kwargs):
         response = self.client.get(
@@ -63,4 +63,4 @@ class Activity:
             params=kwargs
         )
 
-        return response.json()
+        return response.status_code, response.json()

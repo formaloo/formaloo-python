@@ -41,7 +41,7 @@ class Tag:
             params=params
         )
 
-        return response.json()
+        return response.status_code, response.json()
 
     def create(self):
         if not self.title:
@@ -54,7 +54,7 @@ class Tag:
             body=body
         )
 
-        return response.json()
+        return response.status_code, response.json()
 
     def get(self, slug, **kwargs):
         params = kwargs
@@ -64,4 +64,4 @@ class Tag:
             params=params
         )
 
-        return response.json()
+        return response.status_code, response.json()
