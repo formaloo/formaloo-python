@@ -19,7 +19,7 @@ def reqs(*f):
 
 setuptools.setup(
     name="formaloo-cdp",
-    version="0.1.10",
+    version="0.1.11",
     author="Formaloo",
     author_email="info@formaloo.com",
     description="Official SDK to use Formaloo API",
