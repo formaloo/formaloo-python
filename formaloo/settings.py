@@ -16,11 +16,11 @@ except ModuleNotFoundError:
     CLIENT_SECRET = None
 
 
-if not V_1_0_API_BASE:
+if V_1_0_API_BASE == None:
     V_1_0_API_BASE = env("FORMALOO_API_BASE", 'https://api.formaloo.net/v1.0/')
 
-if not CLIENT_KEY:
+if CLIENT_KEY == None:
     CLIENT_KEY = env('FORMALOO_CLIENT_KEY')
 
-if not CLIENT_SECRET:
+if CLIENT_SECRET == None:
     CLIENT_SECRET = env('FORMALOO_CLIENT_SECRET', None)
