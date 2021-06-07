@@ -3,7 +3,7 @@ from formaloo import constants, client
 
 class GamificationCalculationJob:
     def __init__(self):
-        self.client = client.Client()
+        self.client = client.client
 
     def create(self):
         body = self.get_body()

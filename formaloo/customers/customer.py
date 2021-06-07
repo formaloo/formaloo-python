@@ -14,7 +14,7 @@ class Customer:
         if not tags:
             tags = []
 
-        self.client = client.Client()
+        self.client = client.client
         self.base_customer_data = base_data
         self.extra_customer_data = extra_data
         self.tags = tags

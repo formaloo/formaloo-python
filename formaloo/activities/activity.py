@@ -14,7 +14,7 @@ class Activity:
         if not customer_data:
             customer_data = {}
 
-        self.client = client.Client()
+        self.client = client.client
         self.action = action
         self.customer_data = customer_data
         self.activity_data = activity_data
