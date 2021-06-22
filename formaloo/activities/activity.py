@@ -4,7 +4,7 @@ from formaloo.tags import Tag
 
 class Activity:
 
-    def __init__(self, action=None, customer_data=None, activity_data=None, activity_date=None, tags=None):
+    def __init__(self, customer_data=None, activity_data=None, tags=None, **kwargs):
         if not activity_data:
             activity_data = {}
 
@@ -15,10 +15,13 @@ class Activity:
             customer_data = {}
 
         self.client = client.client
-        self.action = action
         self.customer_data = customer_data
         self.activity_data = activity_data
-        self.activity_date = activity_date
+        self.action = kwargs.get('action', None)
+        self.activity_date = kwargs.get('activity_date', None)
+        self.relations = kwargs.get('relations', None)
+        self.monetary_value = kwargs.get('monetary_value', None)
+        self.currency = kwargs.get('currency', None)
         self.tags = tags
 
     def get_body(self):
@@ -27,8 +30,12 @@ class Activity:
         body = {
             'action': self.action,
             'customer': self.customer_data,
+            'monetary_value': self.monetary_value,
             'activity_data': self.activity_data,
             'activity_date': self.activity_date,
+            'relations': self.relations,
+            'monetary_value': self.monetary_value,
+            'currency': self.currency,
             'tags': tags_body
         }
 
