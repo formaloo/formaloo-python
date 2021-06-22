@@ -16,6 +16,14 @@ V_1_0_TAG_ITEM_ENDPOINT = '%stags/{}/' % V_1_0_API_BASE
 
 V_1_0_CREATE_GAMIFICATION_CALCULATION_JOB = '%sgamification-calculation-jobs/' % V_1_0_API_BASE
 
+V_1_0_FORM_LIST_CREATE_ENDPOINT = '%sforms/' % V_1_0_API_BASE
+V_1_0_FORM_ITEM_ENDPOINT = '%sforms/{}/' % V_1_0_API_BASE
+V_1_0_FORM_DISPLAY_ADDRESS_ENDPOINT = '%sform-displays/address/{}/' % V_1_0_API_BASE
+V_1_0_FORM_DISPLAY_SLUG_ENDPOINT = '%sform-displays/slug/{}/' % V_1_0_API_BASE
+
+V_1_0_FIELD_LIST_CREATE_ENDPOINT = '%sfields/' % V_1_0_API_BASE
+V_1_0_FIELD_ITEM_ENDPOINT = '%sfields/{}/' % V_1_0_API_BASE
+
 # HEADERS
 APPLICATION_HEADER = 'x-api-key'
 AUTHORIZATION_HEADER = 'Authorization'
