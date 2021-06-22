@@ -4,7 +4,7 @@ from formaloo import constants, client
 class ActivityBatch:
 
     def __init__(self, activities=[]):
-        self.client = client.Client()
+        self.client = client.client
         self.activities = activities
 
     def add_activity(self, activity):

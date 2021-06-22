@@ -7,7 +7,7 @@ class CustomerBatch:
         if not customers:
             customers = []
 
-        self.client = client.Client()
+        self.client = client.client
         self.customers = customers
 
     def add_customer(self, customer):
