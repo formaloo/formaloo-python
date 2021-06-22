@@ -4,7 +4,7 @@ from formaloo import constants, client
 class Tag:
 
     def __init__(self, title=None, description=None, slug=None):
-        self.client = client.Client()
+        self.client = client.client
         self.title = title
         self.description = description
         self.slug = slug

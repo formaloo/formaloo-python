@@ -130,3 +130,6 @@ class Client:
         )
 
         return response
+
+
+client = Client()
