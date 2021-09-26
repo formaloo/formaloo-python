@@ -1,13 +1,36 @@
-from formaloo import constants, client
+from formaloo import constants, client, helper
 
 
-class Tag:
+class Tag(helper.RequestHandler):
 
     def __init__(self, title=None, description=None, slug=None):
         self.client = client.client
         self.title = title
         self.description = description
         self.slug = slug
+        self.actions = {
+            "get_list": {
+                "url": constants.V_1_0_TAG_LIST_CREATE_ENDPOINT,
+                "has_url_params": False,
+                "body": None,
+                "accept_query_params": True,
+                "method": self.client.get
+            },
+            "create": {
+                "url": constants.V_1_0_TAG_LIST_CREATE_ENDPOINT,
+                "has_url_params": False,
+                "body": self.get_body(),
+                "accept_query_params": False,
+                "method": self.client.post
+            },
+            "get": {
+                "url": constants.V_1_0_TAG_ITEM_ENDPOINT,
+                "has_url_params": True,
+                "body": None,
+                "accept_query_params": True,
+                "method": self.client.get
+            }
+        }
 
     def get_body(self):
         body = {
@@ -32,36 +55,3 @@ class Tag:
             )
 
         return body
-
-    def get_list(self, **kwargs):
-        params = kwargs
-
-        response = self.client.get(
-            constants.V_1_0_TAG_LIST_CREATE_ENDPOINT,
-            params=params
-        )
-
-        return response.json()
-
-    def create(self):
-        if not self.title:
-            raise ValueError("`title` is required to create a tag!")
-
-        body = self.get_body()
-
-        response = self.client.post(
-            constants.V_1_0_TAG_LIST_CREATE_ENDPOINT,
-            body=body
-        )
-
-        return response.json()
-
-    def get(self, slug, **kwargs):
-        params = kwargs
-
-        response = self.client.get(
-            constants.V_1_0_TAG_ITEM_ENDPOINT.format(slug),
-            params=params
-        )
-
-        return response.json()

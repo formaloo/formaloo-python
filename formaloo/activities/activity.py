@@ -1,10 +1,14 @@
-from formaloo import constants, client
+from formaloo import constants, client, helper
 from formaloo.tags import Tag
 
 
-class Activity:
+class Activity(helper.RequestHandler):
 
-    def __init__(self, customer_data=None, activity_data=None, tags=None, **kwargs):
+    def __init__(
+        self, customer_data=None,
+        activity_data=None, tags=None,
+        **kwargs
+    ):
         if not activity_data:
             activity_data = {}
 
@@ -23,6 +27,29 @@ class Activity:
         self.monetary_value = kwargs.get('monetary_value', None)
         self.currency = kwargs.get('currency', None)
         self.tags = tags
+        self.actions = {
+            "get_list": {
+                "url": constants.V_1_0_ACTIVITY_LIST_CREATE_ENDPOINT,
+                "has_url_params": False,
+                "body": None,
+                "accept_query_params": True,
+                "method": self.client.get
+            },
+            "get": {
+                "url": constants.V_1_0_ACTIVITY_ITEM_ENDPOINT,
+                "has_url_params": True,
+                "body": None,
+                "accept_query_params": True,
+                "method": self.client.get
+            },
+            "create": {
+                "url": constants.V_1_0_ACTIVITY_LIST_CREATE_ENDPOINT,
+                "has_url_params": False,
+                "body": self.get_body(),
+                "accept_query_params": False,
+                "method": self.client.post
+            }
+        }
 
     def get_body(self):
         tags_body = Tag.get_list_body(self.tags)
@@ -30,7 +57,6 @@ class Activity:
         body = {
             'action': self.action,
             'customer': self.customer_data,
-            'monetary_value': self.monetary_value,
             'activity_data': self.activity_data,
             'activity_date': self.activity_date,
             'relations': self.relations,
@@ -40,36 +66,3 @@ class Activity:
         }
 
         return body
-
-    def get_list(self, **kwargs):
-        params = kwargs
-
-        response = self.client.get(
-            constants.V_1_0_ACTIVITY_LIST_CREATE_ENDPOINT,
-            params=params
-        )
-
-        return response.json()
-
-    def create(self):
-        if not self.action:
-            raise ValueError("`action` is required to create a tag!")
-
-        body = self.get_body()
-
-        response = self.client.post(
-            constants.V_1_0_ACTIVITY_LIST_CREATE_ENDPOINT,
-            body=body
-        )
-
-        return response.json()
-
-    def get(self, slug, **kwargs):
-        params = kwargs
-
-        response = self.client.get(
-            constants.V_1_0_ACTIVITY_ITEM_ENDPOINT,
-            params=params
-        )
-
-        return response.json()

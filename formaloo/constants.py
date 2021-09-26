@@ -18,11 +18,22 @@ V_1_0_CREATE_GAMIFICATION_CALCULATION_JOB = '%sgamification-calculation-jobs/' %
 
 V_1_0_FORM_LIST_CREATE_ENDPOINT = '%sforms/' % V_1_0_API_BASE
 V_1_0_FORM_ITEM_ENDPOINT = '%sforms/{}/' % V_1_0_API_BASE
+V_1_0_FORM_STATS_ENDPOINT = '%sforms/{}/stats/' % V_1_0_API_BASE
+
 V_1_0_FORM_DISPLAY_ADDRESS_ENDPOINT = '%sform-displays/address/{}/' % V_1_0_API_BASE
 V_1_0_FORM_DISPLAY_SLUG_ENDPOINT = '%sform-displays/slug/{}/' % V_1_0_API_BASE
+V_1_0_FORM_DISPLAY_SUBMIT_ENDPOINT = '%sform-displays/slug/{}/submit/' % V_1_0_API_BASE
+
 
 V_1_0_FIELD_LIST_CREATE_ENDPOINT = '%sfields/' % V_1_0_API_BASE
 V_1_0_FIELD_ITEM_ENDPOINT = '%sfields/{}/' % V_1_0_API_BASE
+
+
+V_1_0_FORM_CATEGORY_LIST_CREATE_ENDPOINT = '%sforms/category/' % V_1_0_API_BASE
+V_1_0_FORM_CATEGORY_ITEM_ENDPOINT = '%sforms/category/{}/' % V_1_0_API_BASE
+
+
+V_1_0_FORM_TEMPLATE_LIST_ENDPOINT = '%sforms/templates/' % V_1_0_API_BASE
 
 # HEADERS
 APPLICATION_HEADER = 'x-api-key'

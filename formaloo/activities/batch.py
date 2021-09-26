@@ -1,24 +1,23 @@
-from formaloo import constants, client
+from formaloo import constants, client, helper
 
 
-class ActivityBatch:
+class ActivityBatch(helper.RequestHandler):
 
     def __init__(self, activities=[]):
         self.client = client.client
         self.activities = activities
+        self.actions = {
+            "create": {
+                "url": constants.V_1_0_ACTIVITY_BATCH_ENDPOINT,
+                "has_url_params": False,
+                "body": self.get_body(),
+                "accept_query_params": False,
+                "method": self.client.post
+            }
+        }
 
     def add_activity(self, activity):
         self.activities.append(activity)
-
-    def create(self):
-        body = self.get_body()
-
-        response = self.client.post(
-            constants.V_1_0_ACTIVITY_BATCH_ENDPOINT,
-            body=body
-        )
-
-        return response.json()
 
     def get_body(self):
         body = {
