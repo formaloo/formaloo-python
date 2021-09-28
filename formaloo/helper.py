@@ -57,7 +57,7 @@ class RequestHandler:
 
         Example of using this method in projects:
 
-        from formaloo.forms.form import Form
+        from formaloo.forms import Form
         form = Form()
         form.send_request(
             action="get_stats",
