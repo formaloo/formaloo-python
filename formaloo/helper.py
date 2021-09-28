@@ -61,7 +61,7 @@ class RequestHandler:
         form = Form()
         form.send_request(
             action="get_stats",
-            url_params=['93pTffpR']
+            url_params=['9fpTfgpR']
         )
         """
 

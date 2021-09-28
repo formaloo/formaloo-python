@@ -41,6 +41,9 @@ V_1_0_FORM_ROW_TAG_ITEM_ENDPOINT = '%sforms/{}/row-tags/{}/' % V_1_0_API_BASE
 V_1_0_ROW_VOTE_LIST_CREATE_ENDPOINT = '%slive-dashboards/{}/rows/{}/votes/' % V_1_0_API_BASE
 V_1_0_ROW_VOTE_ITEM_ENDPOINT = '%slive-dashboards/{}/rows/{}/votes/{}/' % V_1_0_API_BASE
 
+V_1_0_PAYMENT_METHOD_LIST_CREATE_ENDPOINT = '%spayment-methods/' % V_1_0_API_BASE
+V_1_0_PAYMENT_METHOD_ITEM_ENDPOINT = '%spayment-methods/{}/' % V_1_0_API_BASE
+
 
 # HEADERS
 APPLICATION_HEADER = 'x-api-key'
