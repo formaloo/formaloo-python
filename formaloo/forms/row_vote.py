@@ -10,14 +10,12 @@ class RowVote(helper.RequestHandler):
                 "url": constants.V_1_0_ROW_VOTE_LIST_CREATE_ENDPOINT,
                 "has_url_params": True,
                 "body": None,
-                
                 "method": self.client.get
             },
             "create": {
                 "url": constants.V_1_0_ROW_VOTE_LIST_CREATE_ENDPOINT,
                 "has_url_params": True,
                 "body": self.get_body(),
-                
                 "method": self.client.post
             },
             "patch": {
