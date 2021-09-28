@@ -54,6 +54,15 @@ class RequestHandler:
         """
         action: "create"
         url_patrams: ["slug1", "slug2"]
+
+        Example of using this method in projects:
+
+        from formaloo.forms.form import Form
+        form = Form()
+        form.send_request(
+            action="get_stats",
+            url_params=['93pTffpR']
+        )
         """
 
         action = self.actions.get(action)
