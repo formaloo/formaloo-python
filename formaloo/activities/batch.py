@@ -11,7 +11,7 @@ class ActivityBatch(helper.RequestHandler):
                 "url": constants.V_1_0_ACTIVITY_BATCH_ENDPOINT,
                 "has_url_params": False,
                 "body": self.get_body(),
-                "accept_query_params": False,
+                
                 "method": self.client.post
             }
         }

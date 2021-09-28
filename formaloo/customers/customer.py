@@ -30,21 +30,21 @@ class Customer(helper.RequestHandler):
                 "url": constants.V_1_0_CUSTOMER_LIST_CREATE_ENDPOINT,
                 "has_url_params": False,
                 "body": None,
-                "accept_query_params": True,
+                
                 "method": self.client.get
             },
             "get": {
                 "url": constants.V_1_0_CUSTOMER_ITEM_ENDPOINT,
                 "has_url_params": True,
                 "body": None,
-                "accept_query_params": True,
+                
                 "method": self.client.get
             },
             "create": {
                 "url": constants.V_1_0_CUSTOMER_LIST_CREATE_ENDPOINT,
                 "has_url_params": False,
                 "body": self.get_body(),
-                "accept_query_params": False,
+                
                 "method": self.client.post
             }
         }

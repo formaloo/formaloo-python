@@ -34,6 +34,13 @@ V_1_0_FORM_CATEGORY_ITEM_ENDPOINT = '%sforms/category/{}/' % V_1_0_API_BASE
 
 
 V_1_0_FORM_TEMPLATE_LIST_ENDPOINT = '%sforms/templates/' % V_1_0_API_BASE
+V_1_0_FORM_ROW_TAGS_LIST_CREATE_ENDPOINT = '%sforms/{}/row-tags/' % V_1_0_API_BASE
+V_1_0_FORM_ROW_TAG_ITEM_ENDPOINT = '%sforms/{}/row-tags/{}/' % V_1_0_API_BASE
+
+
+V_1_0_ROW_VOTE_LIST_CREATE_ENDPOINT = '%slive-dashboards/{}/rows/{}/votes/' % V_1_0_API_BASE
+V_1_0_ROW_VOTE_ITEM_ENDPOINT = '%slive-dashboards/{}/rows/{}/votes/{}/' % V_1_0_API_BASE
+
 
 # HEADERS
 APPLICATION_HEADER = 'x-api-key'

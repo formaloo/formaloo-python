@@ -14,7 +14,7 @@ class CustomerBatch(helper.RequestHandler):
                 "url": constants.V_1_0_CUSTOMER_BATCH_ENDPOINT,
                 "has_url_params": False,
                 "body": self.get_body(),
-                "accept_query_params": False,
+                
                 "method": self.client.post
             }
         }

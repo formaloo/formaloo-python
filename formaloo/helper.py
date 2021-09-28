@@ -14,14 +14,12 @@ class RequestHandler:
             "url": constants.V_1_0_FORM_LIST_CREATE_ENDPOINT,
             "has_url_params": False,
             "body": None,
-            "accept_query_params": True,
             "method": self.client.get
         },
         "create": {
             "url": constants.V_1_0_FORM_LIST_CREATE_ENDPOINT,
             "has_url_params": False,
             "body": self.get_body(),
-            "accept_query_params": False,
             "method": self.client.post
         }
     }
@@ -64,8 +62,7 @@ class RequestHandler:
         url = action.get('url')
         request_data = {}
 
-        if action['accept_query_params']:
-            request_data['params'] = kwargs
+        request_data['params'] = kwargs
 
         if action.get('body'):
             request_data['body'] = action.get('body')
