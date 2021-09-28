@@ -62,7 +62,11 @@ class RequestHandler:
         url = action.get('url')
         request_data = {}
 
-        request_data['params'] = kwargs
+        if action['method'] in [
+            self.client.get,
+            self.client.delete
+        ]:
+            request_data['params'] = kwargs
 
         if action.get('body'):
             request_data['body'] = action.get('body')
