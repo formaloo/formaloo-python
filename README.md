@@ -14,7 +14,7 @@ Formaloo solutions such as Formaloo CDP, Data Collection (Database & Form builde
 
 # Installation
 Install formaloo sdk using pip:
-pip install git+https://github.com/formaloo/formaloo-python@master
+pip install formaloo-cdp
 
 # Authentication
 Get **client key** and **secret key** in formaloo dashboard:
