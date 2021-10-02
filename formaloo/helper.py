@@ -45,9 +45,19 @@ class RequestHandler:
     def actions_list(self):
         return list(self.actions.keys())
 
-    def send_request(
+    def __getattr__(self, attr):
+        if attr not in self.actions_list:
+            raise AttributeError(
+                "{} has no action {}".format(
+                    self.__class__.__name__,
+                    attr
+                )
+            )
+        self.received_action = attr
+        return self._send_request
+
+    def _send_request(
         self,
-        action: str,
         url_params: List[str] = None,
         **kwargs
     ) -> Dict:
@@ -65,7 +75,7 @@ class RequestHandler:
         )
         """
 
-        action = self.actions.get(action)
+        action = self.actions.get(self.received_action)
         self.validate(action, url_params)
 
         url = action.get('url')
