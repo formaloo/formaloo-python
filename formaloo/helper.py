@@ -62,15 +62,13 @@ class RequestHandler:
         **kwargs
     ) -> Dict:
         """
-        action: "create"
         url_patrams: ["slug1", "slug2"]
 
         Example of using this method in projects:
 
         from formaloo.forms import Form
         form = Form()
-        form.send_request(
-            action="get_stats",
+        form.get_stats(
             url_params=['9fpTfgpR']
         )
         """
