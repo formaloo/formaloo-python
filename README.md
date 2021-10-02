@@ -27,17 +27,16 @@ Then export them as environment variables:
 # Usage
 
 **Example**: we want to get stats of a form, first we should import `Form` class and create an instance,
-then we call `send_request` method like below:
+then we call `get_stats` method like below:
 
     from formaloo.forms import Form
     
     form = Form()
     
-    form.send_request(
-        action="get_stats",
+    form.get_stats(
         url_params=['9mpTfdpR']
     )
- **action**: Every class has a list of actions, you should set action when call `send_request` method.
+ **action**: Every class has a list of actions. in this example get_stats is a action of `Form` class.
  You have access to list of actions for a class by `actions_list` property.
 ` print(form.actions_list)`
 
