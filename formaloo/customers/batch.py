@@ -1,7 +1,7 @@
-from formaloo import constants, client
+from formaloo import constants, client, helper
 
 
-class CustomerBatch:
+class CustomerBatch(helper.RequestHandler):
 
     def __init__(self, customers=None):
         if not customers:
@@ -9,19 +9,17 @@ class CustomerBatch:
 
         self.client = client.client
         self.customers = customers
+        self.actions = {
+            "create": {
+                "url": constants.V_1_0_CUSTOMER_BATCH_ENDPOINT,
+                "has_url_params": False,
+                "body": self.get_body(),
+                "method": self.client.post
+            }
+        }
 
     def add_customer(self, customer):
         self.customers.append(customer)
-
-    def create(self):
-        body = self.get_body()
-
-        response = self.client.post(
-            constants.V_1_0_CUSTOMER_BATCH_ENDPOINT,
-            body=body
-        )
-
-        return response.json()
 
     def get_body(self):
         body = {
