@@ -1,21 +1,14 @@
-from formaloo import constants, client
+from formaloo import constants, helper
 
 
-class GamificationCalculationJob:
-    def __init__(self):
-        self.client = client.client
-
-    def create(self):
-        body = self.get_body()
-
-        response = self.client.post(
-            constants.V_1_0_CREATE_GAMIFICATION_CALCULATION_JOB,
-            body=body
-        )
-
-        return response.json()
-
-    def get_body(self):
-        body = {
+class GamificationCalculationJob(helper.RequestHandler):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.actions = {
+            "create": {
+                "url": constants.V_1_0_CREATE_GAMIFICATION_CALCULATION_JOB,
+                "has_url_params": False,
+                "body": self.get_body(),
+                "method": self.client.post
+            }
         }
-        return body

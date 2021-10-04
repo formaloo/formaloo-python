@@ -1,43 +1,27 @@
-from formaloo import constants, client
+from formaloo import constants, helper
 
 
-class FormDisplay:
+class FormDisplay(helper.RequestHandler):
 
     def __init__(self, **kwargs):
-        self.client = client.Client()
-
-    def get_body(self):
-        body = {
+        super().__init__(**kwargs)
+        self.actions = {
+            "get_by_address": {
+                "url": constants.V_1_0_FORM_DISPLAY_ADDRESS_ENDPOINT,
+                "has_url_params": True,
+                "body": None,
+                "method": self.client.get
+            },
+            "get_by_slug": {
+                "url": constants.V_1_0_FORM_DISPLAY_SLUG_ENDPOINT,
+                "has_url_params": True,
+                "body": None,
+                "method": self.client.get
+            },
+            "submit": {
+                "url": constants.V_1_0_FORM_DISPLAY_SUBMIT_ENDPOINT,
+                "has_url_params": True,
+                "body": self.get_body(),
+                "method": self.client.post
+            }
         }
-
-        return body
-
-    def get_by_address(self, address, **kwargs):
-        params = kwargs
-
-        response = self.client.get(
-            constants.V_1_0_FORM_DISPLAY_ADDRESS_ENDPOINT.format(address),
-            params=params
-        )
-
-        return response.json()
-
-    def get_by_slug(self, slug, **kwargs):
-        params = kwargs
-
-        response = self.client.get(
-            constants.V_1_0_FORM_DISPLAY_SLUG_ENDPOINT.format(slug),
-            params=params
-        )
-
-        return response.json()
-
-    def submit(self, slug):
-        body = self.get_body()
-
-        response = self.client.post(
-            constants.V_1_0_FORM_DISPLAY_SLUG_ENDPOINT.format(slug),
-            body=body
-        )
-
-        return response.json()

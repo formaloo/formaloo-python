@@ -1,67 +1,45 @@
-from formaloo import constants, client
+from formaloo import constants, helper
 
 
-class Form:
+class Form(helper.RequestHandler):
 
     def __init__(self, **kwargs):
-        self.client = client.Client()
-
-        self.data = kwargs
-
-    def get_body(self):
-        body = {
+        super().__init__(**kwargs)
+        self.actions = {
+            "get_list": {
+                "url": constants.V_1_0_FORM_LIST_CREATE_ENDPOINT,
+                "has_url_params": False,
+                "body": None,
+                "method": self.client.get
+            },
+            "create": {
+                "url": constants.V_1_0_FORM_LIST_CREATE_ENDPOINT,
+                "has_url_params": False,
+                "body": self.get_body(),
+                "method": self.client.post
+            },
+            "get": {
+                "url": constants.V_1_0_FORM_ITEM_ENDPOINT,
+                "has_url_params": True,
+                "body": None,
+                "method": self.client.get
+            },
+            "get_stats": {
+                "url": constants.V_1_0_FORM_LIST_CREATE_ENDPOINT,
+                "has_url_params": True,
+                "body": None,
+                "method": self.client.get
+            },
+            "patch": {
+                "url": constants.V_1_0_FORM_ITEM_ENDPOINT,
+                "has_url_params": True,
+                "body": self.get_body(),
+                "method": self.client.patch
+            },
+            "delete": {
+                "url": constants.V_1_0_FORM_ITEM_ENDPOINT,
+                "has_url_params": True,
+                "body": None,
+                "method": self.client.delete
+            }
         }
-
-        body.update(self.data)
-
-        return body
-
-    def get_list(self, **kwargs):
-        params = kwargs
-
-        response = self.client.get(
-            constants.V_1_0_FORM_LIST_CREATE_ENDPOINT,
-            params=params
-        )
-
-        return response.json()
-
-    def create(self):
-        body = self.get_body()
-
-        response = self.client.post(
-            constants.V_1_0_FORM_LIST_CREATE_ENDPOINT,
-            body=body
-        )
-
-        return response.json()
-
-    def get(self, slug, **kwargs):
-        params = kwargs
-
-        response = self.client.get(
-            constants.V_1_0_FORM_ITEM_ENDPOINT.format(slug),
-            params=params
-        )
-
-        return response.json()
-
-    def patch(self, slug, **kwargs):
-        params = kwargs
-
-        response = self.client.patch(
-            constants.V_1_0_FORM_ITEM_ENDPOINT.format(slug),
-            params=params
-        )
-
-        return response.json()
-
-    def delete(self, slug, **kwargs):
-        params = kwargs
-
-        response = self.client.patch(
-            constants.V_1_0_FORM_ITEM_ENDPOINT.format(slug),
-            params=params
-        )
-
-        return response.json()
