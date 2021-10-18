@@ -20,7 +20,13 @@ class RequestHandler:
             "url": constants.V_1_0_FORM_LIST_CREATE_ENDPOINT,
             "has_url_params": False,
             "body": self.get_body(),
-            "method": self.client.post
+            "method": self.client.post,
+            "set_from_response_data": {
+                # set slug and address as
+                # instance variables from response data
+                'slug': ('data', 'form', 'slug'),
+                'address': ('data', 'form', 'address')
+            }
         }
     }
     """
@@ -47,12 +53,15 @@ class RequestHandler:
 
     def __getattr__(self, attr):
         if attr not in self.actions_list:
-            raise AttributeError(
-                "{} has no action {}".format(
-                    self.__class__.__name__,
-                    attr
-                )
-            )
+            try:
+                return getattr(self.__class__, attr)
+            except Exception:
+                raise AttributeError(
+                    "{} has no attribute {}".format(
+                            self.__class__.__name__,
+                            attr
+                        )
+                    )
         self.received_action = attr
         return self._send_request
 
@@ -95,5 +104,14 @@ class RequestHandler:
             url,
             **request_data
         )
+
+        # set some of response values as instance variables
+        # set_from_response_data should set in action item
+        if action.get('set_from_response_data'):
+            for k, v in action.get('set_from_response_data').items():
+                value = response.json()
+                for key in v:
+                    value = value.get(key)
+                setattr(self, k, value)
 
         return response.json()

@@ -17,7 +17,11 @@ class Field(helper.RequestHandler):
                 "url": constants.V_1_0_FIELD_LIST_CREATE_ENDPOINT,
                 "has_url_params": False,
                 "body": self.get_body(),
-                "method": self.client.post
+                "method": self.client.post,
+                "set_from_response_data": {
+                    # set slug as instance variable from response data
+                    'slug': ('data', 'field', 'slug'),
+                }
             },
             "get": {
                 "url": constants.V_1_0_FIELD_ITEM_ENDPOINT,
